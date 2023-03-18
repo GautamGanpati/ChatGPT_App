@@ -23,7 +23,7 @@ class ChatMessage extends StatelessWidget {
             Material(
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
                 elevation: 5,
-                color: Colors.blue[400],
+                color: Colors.deepPurple[200],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -35,7 +35,7 @@ class ChatMessage extends StatelessWidget {
             Material(
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               elevation: 8,
-              color: Colors.blue[600],
+              color: Colors.deepPurple[700],
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(

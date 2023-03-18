@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:chat_gpt/chatlist_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class ChatGPTPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class ChatGPTPage extends StatefulWidget {
 
 Future<String> generateResponse(String botMessage) async {
   try {
-    const apiKey = "Your API Key";
+    const apiKey = "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";
     var url = Uri.https("api.openai.com", "/v1/chat/completions");
     final response = await http.post(url,
         headers: {
@@ -55,14 +56,11 @@ class _ChatGPTPageState extends State<ChatGPTPage> {
 
     _messageController.clear();
 
-    
     String botMessage = await generateResponse(usermessage.text);
     ChatMessage botmessage = ChatMessage(text: botMessage, sender: "Bot");
     setState(() {
       _messages.insert(0, botmessage);
     });
-
-
   }
 
   Widget _buildTextComposer() {
@@ -70,16 +68,18 @@ class _ChatGPTPageState extends State<ChatGPTPage> {
       children: [
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: TextField(
-            maxLines: null,
-            onSubmitted: (value) => _sendMessage(),
-            controller: _messageController,
-            decoration: const InputDecoration.collapsed(hintText: "Enter a message"),
-          ),
-        )),
+              padding: const EdgeInsets.only(left: 8),
+              child: TextField(
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+                onSubmitted: (value) => _sendMessage(),
+                controller: _messageController,
+                decoration:
+                    const InputDecoration.collapsed(hintText: "Enter a message"),
+              ),
+            )),
         IconButton(
-          color: Colors.lightBlue,
+          color: Colors.deepPurple[500],
           onPressed: () => _sendMessage(),
           icon: const Icon(Icons.send_rounded),
         ),
@@ -94,8 +94,10 @@ class _ChatGPTPageState extends State<ChatGPTPage> {
         //resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: 5,
-          backgroundColor: Colors.blue[600],
-          title: const Text('ChatGPT', style: TextStyle(color: Colors.white),),
+          title: const Text(
+            'ChatGPT',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: false,
         ),
         body: Column(
@@ -105,21 +107,30 @@ class _ChatGPTPageState extends State<ChatGPTPage> {
                   reverse: true,
                   itemCount: _messages.length,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: _messages[index],
+                    final message = _messages[index];
+                    return GestureDetector(
+                      onLongPress: () {
+                        Clipboard.setData(ClipboardData(text: message.text));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Message copied to clipboard"),
+                            duration: Duration(seconds: 1),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: message,
+                      ),
                     );
                   }),
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+                  const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 15),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  border: Border.all(
-                    color: Colors.lightBlue,
-                  ),
+                  border: Border.all(),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: _buildTextComposer(),

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.lightBlue),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: ChatGPTPage(),
     );
   }

@@ -13,7 +13,7 @@ class ChatGPTPage extends StatefulWidget {
 
 Future<String> generateResponse(String botMessage) async {
   try {
-    const apiKey = "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";
+    const apiKey = "Your API KEY";
     var url = Uri.https("api.openai.com", "/v1/chat/completions");
     final response = await http.post(url,
         headers: {

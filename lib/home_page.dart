@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
 class ChatGPTPage extends StatefulWidget {
-  const ChatGPTPage({Key? key}) : super(key: key);
+  const ChatGPTPage({super.key});
 
 
   @override

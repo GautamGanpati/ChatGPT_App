@@ -9,6 +9,7 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           margin: const EdgeInsets.only(right: 10),
@@ -22,7 +23,7 @@ class ChatMessage extends StatelessWidget {
           children: [
             Material(
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
-                elevation: 5,
+                elevation: 2,
                 color: Colors.deepPurple[200],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -35,16 +36,14 @@ class ChatMessage extends StatelessWidget {
             Material(
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               elevation: 8,
-              color: Colors.deepPurple[700],
+              color: Colors.deepPurple[600],
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      text,
-                      style: const TextStyle(fontSize: 17, color: Colors.white),
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    text,
+                    style: const TextStyle(fontSize: 17, color: Colors.white),
                   ),
                 ),
               ),

@@ -1,4 +1,4 @@
-# chat_gpt
+# ChatGAI
 
 <p align="center">
   <img src="Screenshot_3.png" alt="Image to Text" width="300"/>

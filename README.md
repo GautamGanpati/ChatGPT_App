@@ -1,6 +1,8 @@
 # chat_gpt
 
-A new Flutter project.
+<p align="center">
+  <img src="Screenshot_3.png" alt="Image to Text" width="300"/>
+</p>
 
 ## Getting Started
 
